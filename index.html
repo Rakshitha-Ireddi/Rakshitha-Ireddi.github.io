@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ireddi Rakshitha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* light (default / no explicit choice + prefers-color-scheme: light) */
+    --bg:#f4f4f8;
+    --bg-elevated:#ececf1;
+    --glass-bg: rgba(20,20,35,0.035);
+    --glass-bg-hover: rgba(20,20,35,0.065);
+    --glass-border: rgba(20,20,35,0.10);
+    --glass-border-strong: rgba(20,20,35,0.22);
+    --text-primary:#17171d;
+    --text-secondary:#57575f;
+    --text-muted:#8d8d96;
+    --accent:#5a5fd6;
+    --accent-dim: rgba(90,95,214,0.18);
+    --status-accepted:#188a4c;
+    --status-submitted:#a3730a;
+    --status-preprint:#1c74b8;
+    --status-published:#6b6b73;
+    --glow-1: rgba(90,95,214,0.10);
+    --glow-2: rgba(20,20,35,0.05);
+    --serif: "Fraunces", ui-serif, Georgia, serif;
+    --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  .hero-right .bio {
+  text-align: justify;
+}
+.section-intro {
+  text-align: justify;
+  text-justify: inter-word;
+  line-height: 1.7;
+}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#000000;
+      --bg-elevated:#0a0a0a;
+      --glass-bg: rgba(255,255,255,0.045);
+      --glass-bg-hover: rgba(255,255,255,0.08);
+      --glass-border: rgba(255,255,255,0.10);
+      --glass-border-strong: rgba(255,255,255,0.22);
+      --text-primary:#f6f6f5;
+      --text-secondary:#a3a3a1;
+      --text-muted:#5c5c5a;
+      --accent:#9aa2ff;
+      --accent-dim: rgba(154,162,255,0.28);
+      --status-accepted:#7fd99a;
+      --status-submitted:#e9bd6b;
+      --status-preprint:#6fb6e6;
+      --status-published:#a3a3a1;
+      --glow-1: rgba(154,162,255,0.09);
+      --glow-2: rgba(255,255,255,0.05);
+    }
+  }
+#research {
+  width: 100%;
+}
+.collab-note {
+  text-align: justify;
+  text-justify: inter-word;
+  line-height: 1.7;
+}
+#research .section-intro {
+  width: 100%;
+  max-width: none;
+  text-align: left;
+  line-height: 1.7;
+}
+  :root[data-theme="dark"]{
+    --bg:#000000;
+    --bg-elevated:#0a0a0a;
+    --glass-bg: rgba(255,255,255,0.045);
+    --glass-bg-hover: rgba(255,255,255,0.08);
+    --glass-border: rgba(255,255,255,0.10);
+    --glass-border-strong: rgba(255,255,255,0.22);
+    --text-primary:#f6f6f5;
+    --text-secondary:#a3a3a1;
+    --text-muted:#5c5c5a;
+    --accent:#9aa2ff;
+    --accent-dim: rgba(154,162,255,0.28);
+    --status-accepted:#7fd99a;
+    --status-submitted:#e9bd6b;
+    --status-preprint:#6fb6e6;
+    --status-published:#a3a3a1;
+    --glow-1: rgba(154,162,255,0.09);
+    --glow-2: rgba(255,255,255,0.05);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--sans);
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    transition: background .25s ease, color .25s ease;
+  }
+
+  ::selection{ background: var(--accent-dim); }
+  ::-webkit-scrollbar{ width:5px; }
+  ::-webkit-scrollbar-track{ background:transparent; }
+  ::-webkit-scrollbar-thumb{ background: var(--glass-border-strong); border-radius:3px; }
+
+  .glow-bg{
+    position:fixed; inset:0; z-index:-1;
+    background:
+      radial-gradient(ellipse 1100px 550px at 12% -8%, var(--glow-1), transparent 60%),
+      radial-gradient(ellipse 900px 550px at 92% 10%, var(--glow-2), transparent 55%),
+      var(--bg);
+  }
+
+  a{ color:inherit; }
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .page{
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: clamp(40px, 6vw, 72px) clamp(20px, 4vw, 48px) 32px;
+  }
+
+  /* ---------- Theme toggle ---------- */
+  .theme-toggle{
+    position: fixed;
+    top: 20px; right: 20px;
+    z-index: 20;
+    background: var(--glass-bg);
+    border:1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius:50%;
+    width:38px; height:38px;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    font-size:16px;
+    line-height:1;
+    transition: all .18s ease;
+  }
+  .theme-toggle:hover{
+    background: var(--glass-bg-hover);
+    border-color: var(--glass-border-strong);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns: 360px 1fr;
+    gap: 56px;
+    align-items:start;
+    opacity:0; transform: translateY(10px);
+    animation: rise 0.6s cubic-bezier(.2,.7,.3,1) forwards;
+  }
+  @keyframes rise{ to{ opacity:1; transform:translateY(0); } }
+  @media (prefers-reduced-motion: reduce){ .hero{ animation:none; opacity:1; transform:none; } }
+  @media (max-width: 860px){ .hero{ grid-template-columns: 1fr; gap:24px; } }
+
+  .hero-left{ display:flex; flex-direction:column; gap:16px; }
+  .monogram{
+    width:56px; height:56px; border-radius:16px;
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--serif); font-weight:600; font-size:20px; letter-spacing:0.5px;
+    background: var(--glass-bg);
+    border:1px solid var(--glass-border);
+  }
+  h1.name{
+    font-family: var(--serif);
+    font-weight:500;
+    font-size: clamp(2.1rem, 3.6vw, 2.9rem);
+    line-height:1.08;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .status-line{
+    font-family: var(--mono);
+    font-size:0.82rem;
+    color: var(--accent);
+    line-height:1.5;
+  }
+  .links{ display:flex; flex-wrap:wrap; gap:9px; margin-top:4px; }
+  .pill{
+    font-family: var(--sans);
+    font-size:0.84rem;
+    font-weight:500;
+    text-decoration:none;
+    padding:8px 15px;
+    border-radius:999px;
+    background: var(--glass-bg);
+    border:1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all .18s ease;
+  }
+  .pill:hover{
+    background: var(--glass-bg-hover);
+    border-color: var(--glass-border-strong);
+    transform: translateY(-1px);
+  }
+#collaborations {
+  width: 100%;
+}
+
+#collaborations .collab-note {
+  max-width: 100%;
+  width: 100%;
+}
+  .hero-right{ display:flex; align-items:center; height:100%; }
+  .bio{
+    font-family: var(--serif);
+    font-weight:400;
+    font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+    line-height:1.55;
+    color: var(--text-secondary);
+    text-wrap: balance;
+  }
+  .bio strong{ color:var(--text-primary); font-weight:500; }
+
+  /* ---------- Sections ---------- */
+  section{ margin-top: 76px; }
+  h2.section-title{
+    font-family: var(--serif);
+    font-weight:500;
+    font-size:1.5rem;
+    display:flex; align-items:baseline; gap:10px;
+    margin:0 0 6px;
+  }
+  .section-count{ font-family: var(--mono); font-size:0.72rem; color: var(--text-muted); font-weight:400; }
+  .section-intro{ color: var(--text-secondary); max-width:68ch; margin: 6px 0 28px; }
+
+  /* ---------- Research grid ---------- */
+  .paper-group{ margin-bottom:34px; }
+  .paper-group-label{
+    font-family: var(--mono); text-transform:uppercase; letter-spacing:1px;
+    font-size:0.72rem; color: var(--text-muted); margin-bottom:14px;
+  }
+  .paper-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:14px;
+  }
+  @media (max-width: 760px){ .paper-grid{ grid-template-columns: 1fr; } }
+
+  .paper{
+    background: var(--glass-bg);
+    border:1px solid var(--glass-border);
+    border-radius:14px;
+    padding:18px 20px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all .18s ease;
+    cursor:pointer;
+    text-align:left;
+    width:100%;
+    color:inherit;
+    font-family:inherit;
+    display:flex; flex-direction:column;
+  }
+  .paper:hover{ background: var(--glass-bg-hover); border-color: var(--glass-border-strong); transform: translateY(-1px); }
+
+  .paper-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+  .paper-title{ font-weight:600; font-size:0.98rem; }
+  .paper-desc{ margin-top:10px; color: var(--text-secondary); font-size:0.88rem; flex:1; }
+  .venue{ font-family:var(--mono); font-size:0.76rem; color:var(--text-secondary); margin-top:6px; }
+
+  .status{
+    font-family: var(--mono); font-size:0.66rem; text-transform:uppercase; letter-spacing:0.6px;
+    padding:4px 9px; border-radius:999px; white-space:nowrap; border:1px solid currentColor; flex-shrink:0;
+  }
+  .status-accepted{ color: var(--status-accepted); }
+  .status-submitted{ color: var(--status-submitted); }
+  .status-preprint{ color: var(--status-preprint); }
+  .status-published{ color: var(--status-published); }
+  .status-progress{ color: var(--accent); }
+
+  /* ---------- Patent ---------- */
+  .patent-card{ background: var(--glass-bg); border:1px solid var(--glass-border); border-radius:14px; padding:22px 24px; cursor:pointer; transition: all .18s ease; text-align:left; width:100%; color:inherit; font-family:inherit; }
+  .patent-card:hover{ background: var(--glass-bg-hover); border-color: var(--glass-border-strong); }
+  .patent-meta{ font-family:var(--mono); font-size:0.78rem; color:var(--text-muted); margin:6px 0 10px; }
+
+  /* ---------- Skills ---------- */
+  .skill-groups{ display:grid; grid-template-columns: 1fr 1fr; gap:22px 40px; }
+  @media (max-width:700px){ .skill-groups{ grid-template-columns:1fr; } }
+  .skill-group-name{ font-family:var(--mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:10px; }
+  .badge-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .badge{ font-size:0.82rem; color: var(--text-secondary); background: var(--glass-bg); border:1px solid var(--glass-border); padding:6px 12px; border-radius:8px; }
+
+  /* ---------- Collaborations ---------- */
+  .collab-row{ display:flex; flex-wrap:wrap; gap:18px; margin-bottom:14px; }
+  .collab-chip{ font-family:var(--serif); font-style:italic; font-size:1.1rem; color:var(--text-primary); }
+  .collab-note{ color:var(--text-secondary); max-width:52ch; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    margin-top:36px; padding-top:22px; border-top:1px solid var(--glass-border);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-family: var(--mono); font-size:0.76rem; color: var(--text-muted);
+  }
+  footer a{ color:var(--text-muted); text-decoration:underline; text-decoration-color: var(--glass-border-strong); }
+  footer a:hover{ color: var(--text-secondary); }
+
+  /* ---------- Modal ---------- */
+  .modal-backdrop{
+    position:fixed; inset:0; z-index:50;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(4px);
+    display:none;
+    align-items:center; justify-content:center;
+    padding:24px;
+  }
+  .modal-backdrop.open{ display:flex; }
+  .modal{
+    background: var(--bg-elevated);
+    border:1px solid var(--glass-border-strong);
+    border-radius:18px;
+    max-width:640px; width:100%;
+    max-height:80vh; overflow-y:auto;
+    padding:32px 34px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .modal-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:8px; }
+  .modal-title{ font-family:var(--serif); font-size:1.35rem; font-weight:500; line-height:1.25; }
+  .modal-close{
+    background: var(--glass-bg); border:1px solid var(--glass-border); color:var(--text-primary);
+    width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:16px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .modal-meta{ font-family:var(--mono); font-size:0.8rem; color:var(--text-muted); margin-bottom:18px; }
+  .modal-abstract{ color:var(--text-secondary); font-size:0.94rem; line-height:1.7; white-space:pre-line; }
+
+  @media (max-width:520px){
+    .exp-row{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow-bg"></div>
+
+<button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle light/dark theme">&#9788;</button>
+
+<main class="page">
+
+  <header class="hero">
+    <div class="hero-left">
+      <div class="monogram">IR</div>
+      <h1 class="name">Ireddi Rakshitha</h1>
+      <p class="status-line">Incoming Software Development Engineer I (SDE1) at <strong style="color:var(--text-primary)">Amazon</strong> — KYC Payments team, working on the globalization of payment compliance.</p>
+      <nav class="links">
+        <a class="pill" href="mailto:ireddirakshitha@gmail.com">&#9993;&#65039; Email</a>
+        <a class="pill" href="https://www.linkedin.com/in/ireddi-rakshitha" target="_blank" rel="noopener">&#128188; LinkedIn</a>
+        <a class="pill" href="https://github.com/Rakshitha-Ireddi" target="_blank" rel="noopener">&#128025; GitHub</a>
+        <a class="pill" href="https://scholar.google.com/citations?user=IzkudxkAAAAJ&amp;hl=en" target="_blank" rel="noopener">&#127891; Google Scholar</a>
+        <a class="pill" href="https://openreview.net/profile?id=%7EIreddi_Rakshitha1" target="_blank" rel="noopener">&#128221; OpenReview</a>
+      </nav>
+    </div>
+    <div class="hero-right">
+      <p class="bio">I am driven by <strong>deep research</strong> and the pursuit of becoming a research scientist, someone who keeps growing and deepening their knowledge, always looking to be surprised by what the evidence actually shows. My work sits at the intersection of <strong>agentic AI</strong>, <strong>vision-language reasoning</strong>, and <strong>benchmarking</strong>, and has grown into top-tier publications and collaborations with research groups across the world, including <strong>CMU, Stanford, and Harvard</strong>, where I am especially interested in how we measure whether an AI agent actually knows what it's doing.</p>
+    </div>
+  </header>
+
+  <section id="research">
+    <h2 class="section-title">My Research Works</h2>
+    <p class="section-intro">Benchmarking, dataset construction, and evaluation frameworks for vision-language models, LLM agents, agentic AI systems, software-engineering agents, and verifiable reinforcement-learning environments.</p>
+
+    <div class="paper-group">
+      <div class="paper-group-label">Agentic AI &amp; Verifiable Systems</div>
+      <div class="paper-grid">
+
+        <button class="paper" data-paper="decision-analysis">
+          <div class="paper-head">
+            <span class="paper-title">Can Large Language Models Autonomously Perform Decision Analysis?</span>
+            <span class="status status-progress">In Progress</span>
+          </div>
+          <div class="venue">Stanford University collaboration &middot; 2026</div>
+          <p class="paper-desc">A systematic study of whether four contemporary LLMs can autonomously execute the computations behind the Oil Wildcatter decision-analysis problem — finding narrow single-step math is solvable, multi-step integration degrades sharply, and one class of computation is numerically ill-conditioned regardless of prompting.</p>
+        </button>
+
+        <button class="paper" data-paper="trace">
+          <div class="paper-head">
+            <span class="paper-title">TRACE: Verifiable RL Environment for Network Troubleshooting Agents</span>
+            <span class="status status-submitted">Submitted</span>
+          </div>
+          <div class="venue">NeurIPS Workshop 2026</div>
+          <p class="paper-desc">A verifiable reinforcement-learning environment for autonomous network-troubleshooting agents, so an agent's actions can be checked against ground truth rather than judged by eye.</p>
+        </button>
+
+        <button class="paper" data-paper="apishift">
+          <div class="paper-head">
+            <span class="paper-title">APISHIFT: Verifiable Agent Learning for API Contract Migration</span>
+            <span class="status status-submitted">Submitted</span>
+          </div>
+          <div class="venue">NeurIPS Workshop 2026</div>
+          <p class="paper-desc">Benchmark design and evaluation workflows for agent-based API migration and software-engineering tasks.</p>
+        </button>
+
+      </div>
+    </div>
+
+    <div class="paper-group">
+      <div class="paper-group-label">Vision-Language &amp; Multimodal</div>
+      <div class="paper-grid">
+
+        <button class="paper" data-paper="looking-glass">
+          <div class="paper-head">
+            <span class="paper-title">Through the Looking Glass: Benchmarking Mirror Image Reasoning in Vision-Language Models</span>
+            <span class="status status-accepted">Accepted</span>
+          </div>
+          <div class="venue">CVPR Workshop 2026</div>
+          <p class="paper-desc">A benchmark of 700+ images and 3,500+ QA pairs evaluating reflection reasoning in state-of-the-art vision-language models.</p>
+        </button>
+
+        <button class="paper" data-paper="mveb">
+          <div class="paper-head">
+            <span class="paper-title">MVEB: Massive Video Embedding Benchmark</span>
+            <span class="status status-preprint">Preprint</span>
+          </div>
+          <div class="venue">arXiv, 2026 &middot; with Stanford, CMU &amp; Harvard</div>
+          <p class="paper-desc">A 23-task benchmark for video embeddings spanning classification, clustering, retrieval, and video-centric QA — evaluated across 33 models and integrated into the MTEB ecosystem.</p>
+        </button>
+
+        <button class="paper" data-paper="cryo-agent">
+          <div class="paper-head">
+            <span class="paper-title">CRYO-AGENT: Agentic Cryo-ET Reconstruction with Physics-Guided Retrieval-Augmented Diffusion</span>
+            <span class="status status-submitted">Submitted</span>
+          </div>
+          <div class="venue">ECCV 2026</div>
+          <p class="paper-desc">An agentic, physics-guided diffusion pipeline for cryo-electron tomography reconstruction, combining agentic reasoning with generative modeling for scientific imaging.</p>
+        </button>
+
+      </div>
+    </div>
+
+    <div class="paper-group">
+      <div class="paper-group-label">NLP &amp; Applied Machine Learning</div>
+      <div class="paper-grid">
+
+        <button class="paper" data-paper="tabulm">
+          <div class="paper-head">
+            <span class="paper-title">TabuLM: Morphology-Aware Tabular Pre-training for Low-Resource Languages</span>
+            <span class="status status-preprint">Preprint</span>
+          </div>
+          <div class="venue">arXiv, 2026 &middot; with Yashwanth Devavarapu &amp; Ntakirutimana Pierre</div>
+          <p class="paper-desc">The first language model pre-trained on Kinyarwanda tabular data, extending KinyaBERT-large with table-structure-aware embeddings and attention; achieves 62.0% exact match on a new native Kinyarwanda table-QA benchmark.</p>
+        </button>
+
+        <button class="paper" data-paper="kinyaembed">
+          <div class="paper-head">
+            <span class="paper-title">KinyaEmbed: Contrastive Sentence Embeddings for Kinyarwanda via Multi-Stage Curriculum Training</span>
+            <span class="status status-preprint">Preprint</span>
+          </div>
+          <p class="paper-desc">Contrastive sentence-embedding training for a low-resource language, using a multi-stage curriculum.</p>
+        </button>
+
+        <button class="paper" data-paper="sdn-ddos">
+          <div class="paper-head">
+            <span class="paper-title">ML-Based SDN DDoS Detection: Machine Learning&ndash;Enabled Intrusion Detection System</span>
+            <span class="status status-published">Published</span>
+          </div>
+          <div class="venue">CIMA '26</div>
+        </button>
+
+        <button class="paper" data-paper="mhd-flow">
+          <div class="paper-head">
+            <span class="paper-title">Physics-Informed Neural Network Analysis of Rotational Effects on Oscillatory MHD Flow</span>
+            <span class="status status-published">Published</span>
+          </div>
+          <div class="venue">Journal</div>
+        </button>
+
+        <button class="paper" data-paper="cervical-cancer">
+          <div class="paper-head">
+            <span class="paper-title">Comparative Analysis of Machine Learning Algorithms for Cervical Cancer Prediction</span>
+            <span class="status status-published">Published</span>
+          </div>
+          <div class="venue">Springer Nature, 2023</div>
+        </button>
+
+        <button class="paper" data-paper="solar-mining">
+          <div class="paper-head">
+            <span class="paper-title">Revolutionizing Solar Generation Data Mining through Advanced Machine Learning Algorithms</span>
+            <span class="status status-published">Published</span>
+          </div>
+          <div class="venue">IEEE, 2023</div>
+        </button>
+
+        <button class="paper" data-paper="anime-visage">
+          <div class="paper-head">
+            <span class="paper-title">Anime Visage: Revealing Ingenuity with GAN-Assisted Character Development</span>
+            <span class="status status-published">Published</span>
+          </div>
+          <div class="venue">IEEE ICOECA, 2024</div>
+          <p class="paper-desc">Uses GANs to automate the generation of diverse, aesthetically pleasing anime character faces, capturing fine art-style nuances while streamlining a labor-intensive manual design process.</p>
+        </button>
+
+        <button class="paper" data-paper="tsunami-warning">
+          <div class="paper-head">
+            <span class="paper-title">Unleashing Machine Wisdom: A Glimpse Into AI-Powered Tsunami Early Warning Systems</span>
+            <span class="status status-published">Published</span>
+          </div>
+          <div class="venue">Book Chapter &middot; IGI Global, 2024</div>
+          <p class="paper-desc">A book chapter on AI-driven tsunami early warning systems, charting a roadmap from ANN/CNN-based detection toward actionable disaster-management strategy.</p>
+        </button>
+
+      </div>
+    </div>
+
+    <div class="paper-group">
+      <div class="paper-group-label">In Progress</div>
+      <div class="paper-grid">
+
+        <button class="paper" data-paper="astral">
+          <div class="paper-head">
+            <span class="paper-title">Astral: Training-Free Multi-Domain Video Anomaly Detection via Agentic SOP Compilation and Symbolic World Models</span>
+            <span class="status status-progress">In Progress</span>
+          </div>
+          <p class="paper-desc">A training-free, three-agent system that detects video anomalies by reasoning about procedural rather than statistical normality, evaluated across liquid-dispensing, industrial, and robotic-manipulation domains.</p>
+        </button>
+
+        <button class="paper" data-paper="scene-representations">
+          <div class="paper-head">
+            <span class="paper-title">Scene Representations for Robotics: From Metric Maps to 4D Semantic Gaussian Splatting</span>
+            <span class="status status-progress">In Progress</span>
+          </div>
+          <p class="paper-desc">A survey tracing scene representations in robotics from classical metric maps through NeRF to 4D semantic Gaussian Splatting, taxonomizing 130+ methods across SLAM, navigation, and manipulation.</p>
+        </button>
+
+        <button class="paper" data-paper="adaptive-ids">
+          <div class="paper-head">
+            <span class="paper-title">Adaptive Semi-Supervised Intrusion Detection in Software-Defined Networks: A Hybrid Autoencoder&ndash;Gradient Boosting Framework</span>
+            <span class="status status-progress">Under Review</span>
+          </div>
+          <p class="paper-desc">An adaptive semi-supervised IDS framework for SDNs combining autoencoder-based anomaly cues with gradient boosting, addressing limited labels and severe class imbalance under realistic deployment constraints.</p>
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="patent">
+    <h2 class="section-title">Patent</h2>
+    <button class="patent-card" data-paper="patent">
+      <div class="paper-title">A System to Have Adaptive Cruise Control for Vehicles</div>
+      <div class="patent-meta">Indian Patent &middot; filed 25 Jul 2024 &middot; published under Section 11A &middot; VIT-AP University</div>
+      <p class="paper-desc" style="margin-top:0">AI-driven intelligent vehicle speed control and automated decision-making based on real-time driving and traffic conditions.</p>
+    </button>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="skill-groups">
+      <div>
+        <div class="skill-group-name">Programming</div>
+        <div class="badge-row"><span class="badge">Python</span><span class="badge">Java</span><span class="badge">C</span><span class="badge">C++</span><span class="badge">SQL</span><span class="badge">Shell Scripting</span><span class="badge">Git</span><span class="badge">GitHub</span><span class="badge">GitLab</span><span class="badge">FastAPI</span><span class="badge">Spring Boot</span><span class="badge">REST APIs</span><span class="badge">WebSockets</span></div>
+      </div>
+      <div>
+        <div class="skill-group-name">AI &amp; Agentic Systems</div>
+        <div class="badge-row"><span class="badge">Machine Learning</span><span class="badge">Deep Learning</span><span class="badge">NLP</span><span class="badge">LLMs</span><span class="badge">LLM Agents</span><span class="badge">Agentic AI</span><span class="badge">RAG</span><span class="badge">AI Harness Design</span><span class="badge">Embeddings</span><span class="badge">Transformers</span><span class="badge">Multimodal AI</span><span class="badge">LangChain</span><span class="badge">HuggingFace</span><span class="badge">PyTorch</span><span class="badge">TensorFlow</span><span class="badge">FAISS</span></div>
+      </div>
+      <div>
+        <div class="skill-group-name">Systems &amp; Quantitative</div>
+        <div class="badge-row"><span class="badge">Data Structures &amp; Algorithms</span><span class="badge">OOP</span><span class="badge">Design Patterns</span><span class="badge">System Design</span><span class="badge">Linux</span><span class="badge">Multithreading</span><span class="badge">Concurrency</span><span class="badge">Distributed Systems</span><span class="badge">Probability &amp; Statistics</span></div>
+      </div>
+      <div>
+        <div class="skill-group-name">Data &amp; Cloud</div>
+        <div class="badge-row"><span class="badge">Kafka</span><span class="badge">Spark</span><span class="badge">Databricks</span><span class="badge">ETL Pipelines</span><span class="badge">PostgreSQL</span><span class="badge">MongoDB</span><span class="badge">Redis</span><span class="badge">Hadoop</span><span class="badge">Hive</span><span class="badge">AWS</span><span class="badge">Docker</span><span class="badge">Kubernetes</span><span class="badge">CI/CD</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="collaborations">
+    <h2 class="section-title">Collaborations</h2>
+    <div class="collab-row">
+      <span class="collab-chip">Carnegie Mellon University</span>
+      <span class="collab-separator">•</span>
+      <span class="collab-chip">Stanford University</span>
+      <span class="collab-separator">•</span>
+      <span class="collab-chip">Harvard University</span>
+      <span class="collab-separator">||</span>
+      <span class="collab-chip">Independent Researcher</span>
+    </div>
+<p class="collab-note">
+  I am drawn to collaborations that begin with a genuine question and the curiosity
+  to see where it leads. I enjoy working with people who challenge my assumptions,
+  bring perspectives different from my own, and are willing to dig into the details
+  until we understand what is actually happening. I am eager to keep learning,
+  evolve my thinking, and contribute to work that pushes my understanding further.
+  I am also continuing to work on my patent and am always open to new ideas and
+  collaborations.
+</p>
+</section>
+
+  <footer>
+    <span>&copy; 2026 Ireddi Rakshitha</span>
+    <span><a href="mailto:ireddirakshitha@gmail.com">say hello</a></span>
+  </footer>
+
+</main>
+
+<div class="modal-backdrop" id="modal-backdrop" onclick="if(event.target===this) closeModal()">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-head">
+      <div id="modal-title" class="modal-title"></div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+    </div>
+    <div id="modal-meta" class="modal-meta"></div>
+    <div id="modal-abstract" class="modal-abstract"></div>
+  </div>
+</div>
+
+<script>
+  var papers = {
+    "decision-analysis": {
+      title: "Can Large Language Models Autonomously Perform Decision Analysis?",
+      meta: "Stanford University collaboration · In Progress · 2026",
+      abstract: "Large language models (LLMs) are increasingly proposed as autonomous agents for complex, multi-step analytical tasks. Decision analysis — with its formal influence-diagram representation, unambiguous ground truth, and well-established pedagogy — is an unusually clean domain in which to test this claim directly: the correct answer to every question posed here is known exactly, in closed form, before any model is queried. We conduct a systematic empirical study of whether four contemporary LLMs (GPT-4o, GPT-5.5, GPT-5.4, GPT-5.4-mini) can autonomously execute the decision-analytic computations associated with the Oil Wildcatter problem, a canonical influence diagram taught at the undergraduate level, together with two supporting diagnostic diagrams designed to isolate specific reasoning primitives. Using repeated independent trials (N=8 per condition) across 128+ live-model conditions and several hundred individual API calls, we find a graded, three-part answer rather than a single verdict.\n\nFirst, narrow single-step computations (a single Bayes update, a single weighted sum, subjective belief elicitation) are solved reliably by the strongest models once a previously unrecognized structured-output defect — declaring a numeric answer field before the free-text reasoning field, or omitting a reasoning field altogether — is corrected; we show this defect alone explains large, previously unexplained error in this project's own earlier results.\n\nSecond, once a computation requires integrating information across more than one step, reliability drops sharply through several independently diagnosed mechanisms: models reach a decision inconsistent with their own correctly stated posterior, skip marginalization over a hidden node while still landing on the correct top-level choice, or make a single isolated arithmetic slip that corrupts an otherwise-correct multi-branch aggregation.\n\nThird, and most decisively, we identify a class of computation — certainty-equivalent inversion under power (CRRA) utility near its asymptotic limit — that is genuinely numerically ill-conditioned, such that no amount of improved prompting can fix it: four escalating interventions each produced partial, honestly-reported improvement, and only removing the arithmetic from the model's responsibility entirely achieved a complete resolution, confirmed at full scale (128/128 correct across every model and condition).\n\nWe conclude that current LLMs cannot be trusted to autonomously execute decision-analysis computations end to end, even on a problem simple enough to be taught to undergraduates and high-school students, and that this is best understood as a property of the pattern-matching paradigm rather than a temporary capability gap that scale alone will close. We provide a decomposition methodology, and a general architectural principle — LLMs should supply only genuinely uncertain judgments, while code performs any numerically sensitive computation — as a direct, actionable mitigation."
+    },
+    "trace": {
+      title: "TRACE: Verifiable RL Environment for Network Troubleshooting Agents",
+      meta: "NeurIPS Workshop 2026 · Submitted",
+      abstract: "Small language models (SLMs) are increasingly proposed as the right substrate for narrow, repetitive agentic sub-tasks, but demonstrating that an SLM can be trained into a competent tool-using agent requires a domain where the environment itself can verify success. Network troubleshooting is such a domain: an agent must connect a sparse alert to hidden protocol state, gather evidence through telemetry tools, and apply a repair whose success the environment can check directly. We present TRACE, a verifiable benchmark and reinforcement-learning environment for tool-using language agents in network troubleshooting. TRACE combines a pure-Python simulator for OSPF and BGP protocol state, a 54-fault catalog spanning 11 operational failure categories, four topology variants, and an episode protocol that rewards correct diagnosis, component localization, repair, and efficiency. The environment starts in roughly 0.1s without root privileges or network emulation, making it fast enough for repeated agent evaluation and on-policy RL on commodity hardware. In a zero-shot evaluation of 13 instruction-tuned models on 54 stratified episodes, the best model resolves only 44% of incidents, the weakest resolves none, and 23 of 54 fault types are unsolved by every model tested. We then instantiate TRACE as a training environment for a 1.7B-parameter open SLM (Qwen3-1.7B): we distill 371 successful expert trajectories from a frontier teacher, apply LoRA supervised fine-tuning, and follow with Group Relative Policy Optimization (GRPO) against the live simulator's verifiable reward. The two-stage pipeline runs end-to-end on a single 4GB consumer GPU and doubles the SLM's overall solve rate (3.7% → 7.4%) while tripling its solve rate on Hard faults (4% → 12.5%), showing that a small open model can acquire non-trivial diagnostic tool-use skill from a verifiable, simulator-checked reward without a learned reward model or human preference labels."
+    },
+    "apishift": {
+      title: "APISHIFT: Verifiable Agent Learning for API Contract Migration",
+      meta: "NeurIPS Workshop 2026 · Submitted",
+      abstract: "LLM code assistants are powerful but fundamentally untrustworthy: they hallucinate logic, mishandle corner cases, and give no guarantee that a generated artifact is correct. We study a setting where that gap can be narrowed without a full proof calculus: API contract migration, where a vendor changes an API's formal specification (OpenAPI) and a client codebase must be repaired, tested for backward compatibility, and left with a reversible rollback path. We introduce APISHIFT, a verifiable environment in which a trainable manager agent proposes structured JSON actions and four deterministic specialist verifiers — Diff, Patch, Test, Rollback — check, score, or certify each proposal, instantiating the propose→refute→repair→certify loop central to verifiable coding. APISHIFT contains 1,549 real (v1, v2) API version pairs from 449 production providers spanning ten breaking-change types, scored by a five-component machine-checked reward. Zero-shot evaluation across 20 models shows that constrained-output adherence, not model scale, determines success on clean scenarios: Llama-3.2-1B reaches a 100% verified solve rate, matching frontier models, while a 32B reasoning model scores 0% because it emits unconstrained chain-of-thought instead of schema-valid actions. A complementary 50-pair real-world evaluation shows the opposite trend: wild, multi-change specifications require model capacity (Llama-3.3-70B: 98% vs. Llama-3.2-1B: 10%), motivating RL under verifier-derived reward. As a first training baseline we fine-tune Qwen2.5-3B with GRPO and LoRA on a single RTX 3090 GPU and report a negative result: training peaks at reward 0.434 (step 400) before collapsing from within-batch reward-variance collapse under an all-or-nothing verified reward. We diagnose this failure precisely, identify partial-credit shaping and curriculum ordering as repair directions, and release the environment, dataset, and training infrastructure."
+    },
+    "looking-glass": {
+      title: "Through the Looking Glass: Benchmarking Mirror Image Reasoning in Vision-Language Models",
+      meta: "Accepted at CVPR Workshop 2026",
+      abstract: "When a clock reads 2:50 in a mirror, humans instantly infer the true time is 9:10 — yet we show that current Vision-Language Models (VLMs) overwhelmingly report \"2:50,\" hallucinating the canonical orientation rather than reasoning about the reflection. We term this systematic failure reflection blindness and introduce our benchmark, the first designed to diagnose it. It comprises 713 real-world images and 3,529 question-answer pairs spanning 10 scenario categories (license plates in rear-view mirrors, analog clocks, hands, ears, shoes, chemical formulas, ambulance mirror-text, selfie cameras, water reflections, and indoor mirrors), organized into five question types: recognition, correction, spatial, reasoning, and comparison. Evaluating 11 VLMs in both single-turn and multi-turn settings, we find that all models achieve only 39–48% accuracy (single-turn) versus 94% for humans, with frontier systems clustered at 42–44% and performance collapsing most severely on tasks requiring mental un-flipping of text and left–right chirality judgment. Multi-turn dialogue does not improve performance; most models degrade by 1–14 percentage points when questions are posed sequentially."
+    },
+    "mveb": { title: "MVEB: Massive Video Embedding Benchmark", meta: "arXiv, 2026 · Preprint · with Stanford, CMU & Harvard", abstract: "A 23-task benchmark for video embeddings spanning classification, clustering, retrieval, and video-centric QA — evaluated across 33 models and integrated into the MTEB ecosystem for unified text/image/audio/video evaluation." },
+    "cryo-agent": {
+      title: "CRYO-AGENT: Agentic Cryo-ET Reconstruction with Physics-Guided Retrieval-Augmented Diffusion",
+      meta: "ECCV 2026 · Submitted",
+      abstract: "Cryo-electron tomography (cryo-ET) is the gold standard for in situ structural biology, providing a unique window into macromolecular complexes within their native cellular environments. However, the technique is fundamentally limited by low signal-to-noise ratio and the \"missing wedge\" artifact, which induces anisotropic distortions and structural hallucinations that current feed-forward denoising methods fail to rigorously validate. CRYO-AGENT redefines 3D reconstruction as an autonomous, iterative scientific discovery loop: we orchestrate a Planner–Executor–Critic workflow where the Executor uses Retrieval-Augmented Cyclic Diffusion (RAD) to inject high-fidelity 3D atomic priors from the Protein Data Bank directly into the reconstruction process. By integrating a Critic agent with a differentiable physics simulator, CRYO-AGENT significantly reduces missing-wedge artifacts and achieves a high Hallucination Rejection Rate compared to state-of-the-art baselines. While the iterative agentic orchestration introduces higher computational latency than linear models, it ensures strict adherence to the underlying physical data — providing a robust pathway for resolving precise conformational states of proteins in noisy tomograms, and showcasing how vision-language reasoning and retrieval-augmented diffusion can solve complex inverse problems in the natural sciences."
+    },
+    "tabulm": {
+      title: "TabuLM: Morphology-Aware Tabular Pre-training for Low-Resource Languages",
+      meta: "arXiv:2608.26923 · Preprint · with Yashwanth Devavarapu & Ntakirutimana Pierre",
+      abstract: "We present TabuLM, the first language model pre-trained on Kinyarwanda tabular data. Kinyarwanda is a morphologically rich Bantu language spoken by over 12 million people in Rwanda, yet lacks any dedicated tabular representation-learning resource. TabuLM extends KinyaBERT-large, a two-tier morphological transformer, with additive row, column, and cell-type embeddings and a learned table-structure attention bias that sharpens same-row and same-column attention. Pre-training uses two new objectives: Masked Cell Recovery (masking entire cells and reconstructing from row/column context) and Column Type Prediction (predicting column semantic types from observed cell values). We pre-train on 172 Rwandan government tables (~35,000 cells) from NISR, RAB, REB, and MoH open-data portals, and introduce TabQA-kin, the first native Kinyarwanda table question-answering benchmark (526 QA pairs across 31 tables, four question types). TabuLM achieves 62.0% exact match on TabQA-kin, outperforming KinyaBERT-large by 5.7 EM points and all multilingual baselines (mBERT 49.3%, XLM-R 50.0%) by 11.7–12.7 points. Structural table embeddings prove most decisive for comparison and lookup questions, while morphological awareness provides complementary gains."
+    },
+    "kinyaembed": {
+      title: "KinyaEmbed: Contrastive Sentence Embeddings for Kinyarwanda via Multi-Stage Curriculum Training",
+      meta: "arXiv:2608.26941 · Preprint · with Yashwanth Devavarapu & Ntakirutimana Pierre",
+      abstract: "We present KinyaEmbed, the first dedicated sentence-embedding model for Kinyarwanda, a morphologically rich Bantu language spoken by over 12 million people in Rwanda. Existing multilingual embedding models (LaBSE, mE5-large, OpenAI text-embedding-3-large) perform poorly on Kinyarwanda due to severe under-representation in their pre-training corpora. Built on KinyaBERT-large and trained via a four-stage curriculum using MultipleNegativesRankingLoss: Stage 1 leverages ~18,000 paraphrase pairs from the Official Gazette of Rwanda; Stage 2 fine-tunes on NLLB-translated MNLI triplets for entailment structure; Stage 3 aligns representations via English–Kinyarwanda OPUS-100 translation pairs; Stage 4 refines with high-quality pairs filtered from KinyaCOMET. We evaluate on SemRel2024-rw and introduce Wiki-RW-STS, a new contamination-free Kinyarwanda STS benchmark. A seven-checkpoint ensemble achieves Spearman ρ=0.7298 on SemRel2024-rw, surpassing mE5-large by 20.9% and OpenAI text-embedding-3-large by 41.0%, and achieves the best document-clustering silhouette score across all evaluated models."
+    },
+    "sdn-ddos": {
+      title: "ML-Based SDN DDoS Detection: Machine Learning–Enabled Intrusion Detection System",
+      meta: "CIMA '26 · Published",
+      abstract: "Software-Defined Networking (SDN) decouples the control plane from the data plane, fostering centralized control and enhanced programmability for better network management. This architectural flexibility, while improving scalability and operational efficiency, exposes new attack surfaces increasingly exploited by adversaries — particularly targeting the centralized SDN controller. Among these threats, DDoS (specifically SYN Flood) presents a major security concern due to the risk of overwhelming the network through a flood of requests to the controller. We conduct a comparative assessment of several machine learning algorithms — Random Forest, XGBoost, Artificial Neural Networks, and Decision Tree — to detect attack types including Brute Force, DoS, DDoS, Probe, and User-to-Root attacks, using features readily available at the SDN controller so as to avoid computationally expensive deep packet inspection. Evaluated on the CICIDS-2017 dataset, the proposed framework achieves high detection accuracy with minimal false alarms across all attack classes, with the Random Forest ensemble performing best in accuracy, precision, recall, and F1-score — demonstrating a lightweight, efficient system suitable for real-time security monitoring in SDNs."
+    },
+    "mhd-flow": { title: "Physics-Informed Neural Network Analysis of Rotational Effects on Oscillatory MHD Flow", meta: "Journal · Published", abstract: "A physics-informed neural network approach to modeling rotational effects on oscillatory magnetohydrodynamic (MHD) flow." },
+    "cervical-cancer": {
+      title: "Comparative Analysis of Machine Learning Algorithms for Cervical Cancer Prediction",
+      meta: "Springer Nature · ICACECS 2023 · Published · with T. Vasisri, M. Anusha, M. Sucharitha",
+      abstract: "Cervical cancer constitutes a significant public health concern, and early diagnosis plays an important role in the patient's recovery. In this study, we investigated the utilization of various machine learning algorithms to predict cancer with the best accuracy. The objective was to identify the most reliable predictors of cervical cancer through comparative analysis, using medical and demographic characteristics of different patients. The data was prepared by addressing missing values, normalizing features, and resolving intra-class imbalance. We used SVM, K-NN, Decision Tree, Random Forest, and XGBoost, evaluated on precision, accuracy, recall, and AUC-ROC. Among all models used, XGBoost achieved the highest accuracy of 99.22%. These findings provide valuable insights to researchers, physicians, and policy makers toward enhancing care and mitigating the global impact of cervical cancer."
+    },
+    "solar-mining": {
+      title: "Revolutionizing Solar Generation Data Mining through Advanced Machine Learning Algorithms: Novel Insights and Results",
+      meta: "IEEE · CSITSS 2023 · Published · with S.P. Siddique Ibrahim, T. Vasisri, R. Hima Aswitha, M. Ramachandra Rao, D. Vamsi Krishna",
+      abstract: "Solar power generation has emerged as a significant source of renewable energy, emphasizing the importance of precise analysis and prediction of solar generation data. This study focuses on enhancing the accuracy of solar generation data mining using advanced machine learning techniques, capturing intricate patterns and variations in the data while considering environmental factors. We propose a novel algorithm leveraging feature engineering and ensemble learning methods, and through extensive experimentation demonstrate superior predictive performance compared to conventional approaches — contributing to more accurate forecasting and decision-making for efficient renewable energy utilization."
+    },
+    "anime-visage": {
+      title: "Anime Visage: Revealing Ingenuity with GAN-Assisted Character Development",
+      meta: "IEEE ICOECA 2024 · Published · with U. Nithin, S.M.A. Kareem, V.N.S. Rahul, N.P. Challa, B. Naseeba",
+      abstract: "This research explores the fusion of creative ingenuity and machine learning, utilizing Generative Adversarial Networks (GANs) to revolutionize anime character creation. Collaborating with artists, the study employs GANs to automate the generation of diverse and aesthetically pleasing anime faces, addressing the intricate details unique to the art style. Initial findings show the model capturing fine nuances inherent in anime artistry, streamlining a labor-intensive manual process while preserving the anime aesthetic's integrity — marking a more efficient and diversified approach to anime character design."
+    },
+    "tsunami-warning": {
+      title: "Unleashing Machine Wisdom: A Glimpse Into AI-Powered Tsunami Early Warning Systems",
+      meta: "Book Chapter · IGI Global Scientific Publishing, 2024 · in \"Utilizing AI and Machine Learning for Natural Disaster Management\" · with U. Nithin, L. Namratha, M.A.K. Shaik, S. Ibrahim",
+      abstract: "This chapter scrutinizes the potential of AI-driven tsunami early warning systems (TEWS), focused on the catastrophic potential of tsunamis. It charts a roadmap spotlighting artificial neural networks (ANN) and convolutional neural networks (CNN), guiding stakeholders from theoretical frameworks toward actionable strategies. Beyond technical intricacies, it emphasizes the transformative impact of proactive disaster management, envisioning machine learning as a vigilant guardian for coastal safety, and calls for a paradigm shift where human intuition and AI together enhance our capacity to anticipate, respond to, and mitigate the devastating impact of tsunamis."
+    },
+    "astral": {
+      title: "Astral: Training-Free Multi-Domain Video Anomaly Detection via Agentic SOP Compilation and Symbolic World Models",
+      meta: "In Progress",
+      abstract: "Most video anomaly detection (VAD) systems learn statistical notions of normality from large labeled datasets, making them brittle when transferred across domains. Astral (Agentic Symbolic Temporal Reasoning and Anomaly Localization) is a training-free, three-agent system that detects anomalies by reasoning about procedural rather than statistical normality. Given only a plain-language Standard Operating Procedure (SOP) and a video clip, Astral compiles a Canonical Normal World Model — a symbolic representation encoding expected entities, states, temporal protocol steps, and Linear Temporal Logic safety rules — then detects deviations from it without any dataset-specific training. Agent 1 (SOP Compiler) parses the SOP using a 3B-parameter vision-language model; Agent 2 (Deterministic Perceptual Engine) builds a per-frame scene graph via zero-shot detection and tracking, evaluating divergences against the world model through a graph-neural-network analyzer; Agent 3 (Triggered Reasoner) performs causal verification only on flagged clips. Evaluated across liquid-dispensing, industrial-factory, and robotic-manipulation domains, Astral achieves 100.0% accuracy on LiquidAD, 90.9% (F1=0.945) on IPAD, and 60.0% (F1=0.600) on a PhysAD sample, with zero false positives on normal videos across all three datasets."
+    },
+    "scene-representations": {
+      title: "Scene Representations for Robotics: From Metric Maps to 4D Semantic Gaussian Splatting",
+      meta: "Survey · In Progress",
+      abstract: "Robots that execute autonomous tasks need highly expressive, constantly refined representations of the scenes they operate in to perceive, interact with, and reason about them. This survey provides an extensive, organized analysis of scene representations in robotics, tracing the evolutionary path from classical metric maps (occupancy grids, point clouds, truncated signed distance fields) through neural implicit representations (NeRF) to 3D Gaussian Splatting as a unifying explicit-neural hybrid representation. It offers a comprehensive taxonomy grouping 130+ methods into core robotic modules — dense SLAM, navigation, manipulation, semantic reasoning, and physics-informed modeling — with particular attention to the new frontier of 4D semantic Gaussian Splatting, combining temporal dynamics, semantic labels, and explicit Gaussian primitives to address dynamic scene reconstruction, long-term map maintenance, and open-vocabulary comprehension. The survey outlines open problems (catastrophic forgetting, scalability, real-time capability, semantic richness) and future directions toward robust, scalable, semantically rich 4D scene representations for next-generation autonomous systems."
+    },
+    "adaptive-ids": {
+      title: "Adaptive Semi-Supervised Intrusion Detection in Software-Defined Networks: A Hybrid Autoencoder–Gradient Boosting Framework with Transformer-Based Comparative Analysis",
+      meta: "Under Review",
+      abstract: "Software-defined networking (SDN) concentrates critical decision logic inside a centralised controller, creating a high-value attack surface susceptible to both volumetric flooding and control-plane exhaustion attacks. Existing ML-based intrusion detection systems in this domain are predominantly fully supervised, binary-class, and optimised for aggregate accuracy rather than minority-class reliability under realistic class imbalance. This paper proposes an adaptive semi-supervised IDS framework addressing limited labelled data, severe class imbalance, and controller-facing deployment constraints simultaneously, via a novel Hybrid Autoencoder + Gradient Boosting model: an autoencoder trained exclusively on dominant benign-traffic patterns derives reconstruction-error anomaly cues, fused with tabular flow features and fed to a Gradient Boosting classifier. Benchmarked against ten alternatives — classical baselines, standalone deep models, and transformer-based hybrids — under a unified, leakage-safe protocol, the proposed model achieves accuracy of 0.991, Macro-F1 of 0.964, rare-class recall of 0.941, and rare-class precision of 0.896 on a 9,123-record SDN flow dataset, outperforming all comparators in aggregate reliability and minority-class precision."
+    },
+    "patent": {
+      title: "A System to Have Adaptive Cruise Control for Vehicles",
+      meta: "Indian Patent · filed 25 Jul 2024 · published under Section 11A · VIT-AP University",
+      abstract: "AI-driven intelligent vehicle speed control and automated decision-making based on real-time driving and traffic conditions, contributing to research in intelligent transportation systems and applied AI for smart automotive technologies."
+    }
+  };
+
+  document.addEventListener('click', function(e){
+    var card = e.target.closest('[data-paper]');
+    if(card) openModal(card.getAttribute('data-paper'));
+  });
+
+  function openModal(id){
+    var p = papers[id];
+    if(!p) return;
+    document.getElementById('modal-title').textContent = p.title;
+    document.getElementById('modal-meta').textContent = p.meta;
+    document.getElementById('modal-abstract').textContent = p.abstract;
+    document.getElementById('modal-backdrop').classList.add('open');
+  }
+  function closeModal(){ document.getElementById('modal-backdrop').classList.remove('open'); }
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+
+  function setTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    try{ localStorage.setItem('theme', t); }catch(e){}
+    updateToggleUI(t);
+  }
+  function toggleTheme(){
+    var current = document.documentElement.getAttribute('data-theme');
+    if(!current){
+      var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      current = sysDark ? 'dark' : 'light';
+    }
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  }
+  function updateToggleUI(t){
+    var btn = document.getElementById('theme-toggle-btn');
+    btn.innerHTML = t === 'dark' ? '&#9789;' : '&#9788;';
+  }
+  (function(){
+    var stored = null;
+    try{ stored = localStorage.getItem('theme'); }catch(e){}
+    if(stored === 'light' || stored === 'dark'){
+      document.documentElement.setAttribute('data-theme', stored);
+      updateToggleUI(stored);
+    } else {
+      var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      updateToggleUI(sysDark ? 'dark' : 'light');
+    }
+  })();
+</script>
+
+</body>
+</html>
