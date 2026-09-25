@@ -6,7 +6,7 @@
 <title>Ireddi Rakshitha</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     /* light (default / no explicit choice + prefers-color-scheme: light) */
@@ -30,6 +30,7 @@
     --serif: "Fraunces", ui-serif, Georgia, serif;
     --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    color-scheme: light;
   }
   .hero-right .bio {
   text-align: justify;
@@ -39,27 +40,6 @@
   text-justify: inter-word;
   line-height: 1.7;
 }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#000000;
-      --bg-elevated:#0a0a0a;
-      --glass-bg: rgba(255,255,255,0.045);
-      --glass-bg-hover: rgba(255,255,255,0.08);
-      --glass-border: rgba(255,255,255,0.10);
-      --glass-border-strong: rgba(255,255,255,0.22);
-      --text-primary:#f6f6f5;
-      --text-secondary:#a3a3a1;
-      --text-muted:#5c5c5a;
-      --accent:#9aa2ff;
-      --accent-dim: rgba(154,162,255,0.28);
-      --status-accepted:#7fd99a;
-      --status-submitted:#e9bd6b;
-      --status-preprint:#6fb6e6;
-      --status-published:#a3a3a1;
-      --glow-1: rgba(154,162,255,0.09);
-      --glow-2: rgba(255,255,255,0.05);
-    }
-  }
 #research {
   width: 100%;
 }
@@ -75,6 +55,7 @@
   line-height: 1.7;
 }
   :root[data-theme="dark"]{
+    color-scheme: dark;
     --bg:#000000;
     --bg-elevated:#0a0a0a;
     --glass-bg: rgba(255,255,255,0.045);
@@ -137,8 +118,9 @@
     position: fixed;
     top: 20px; right: 20px;
     z-index: 20;
-    background: var(--glass-bg);
-    border:1px solid var(--glass-border);
+    background: var(--glass-bg-hover);
+    border:1px solid var(--glass-border-strong);
+    color: var(--text-primary);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-radius:50%;
@@ -184,9 +166,10 @@
     text-wrap: balance;
   }
   .status-line{
-    font-family: var(--mono);
-    font-size:0.82rem;
-    color: var(--accent);
+    font-family: "Times New Roman", Times, serif;
+    font-size:1.05rem;
+    font-weight:700;
+    color: var(--text-primary);
     line-height:1.5;
   }
   .links{ display:flex; flex-wrap:wrap; gap:9px; margin-top:4px; }
@@ -338,6 +321,8 @@
   }
   .modal-meta{ font-family:var(--mono); font-size:0.8rem; color:var(--text-muted); margin-bottom:18px; }
   .modal-abstract{ color:var(--text-secondary); font-size:0.94rem; line-height:1.7; white-space:pre-line; }
+  .modal-link{ display:inline-block; font-family:var(--mono); font-size:0.8rem; color:var(--accent); margin:-6px 0 16px; text-decoration:underline; text-underline-offset:3px; }
+  .modal-link[hidden]{ display:none; }
 
   @media (max-width:520px){
     .exp-row{ grid-template-columns: 1fr; }
@@ -356,7 +341,7 @@
     <div class="hero-left">
       <div class="monogram">IR</div>
       <h1 class="name">Ireddi Rakshitha</h1>
-      <p class="status-line">Incoming Software Development Engineer I (SDE1) at <strong style="color:var(--text-primary)">Amazon</strong> — KYC Payments team, working on the globalization of payment compliance.</p>
+      <p class="status-line">Software Development Engineer I (SDE1) at <strong style="color:var(--text-primary)">Amazon</strong>, KYC Payments team, working on the globalization of payment compliance. Previously SDE at <strong style="color:var(--text-primary)">Barclays</strong>, Risk Decision Systems.</p>
       <nav class="links">
         <a class="pill" href="mailto:ireddirakshitha@gmail.com">&#9993;&#65039; Email</a>
         <a class="pill" href="https://www.linkedin.com/in/ireddi-rakshitha" target="_blank" rel="noopener">&#128188; LinkedIn</a>
@@ -435,8 +420,24 @@
             <span class="paper-title">CRYO-AGENT: Agentic Cryo-ET Reconstruction with Physics-Guided Retrieval-Augmented Diffusion</span>
             <span class="status status-submitted">Submitted</span>
           </div>
-          <div class="venue">ECCV 2026</div>
+          <div class="venue">ECCV Workshop 2026</div>
           <p class="paper-desc">An agentic, physics-guided diffusion pipeline for cryo-electron tomography reconstruction, combining agentic reasoning with generative modeling for scientific imaging.</p>
+        </button>
+
+      </div>
+    </div>
+
+    <div class="paper-group">
+      <div class="paper-group-label">Systems &amp; Benchmarking</div>
+      <div class="paper-grid">
+
+        <button class="paper" data-paper="order-book">
+          <div class="paper-head">
+            <span class="paper-title">A Reproducible, Cross-Platform Study of Order-Book Data Structures in a Low-Latency Matching Engine</span>
+            <span class="status status-preprint">Preprint</span>
+          </div>
+          <div class="venue">arXiv, Sept 2026 &middot; with Yashwanth Devavarapu &middot; code public</div>
+          <p class="paper-desc">An open, reproducible comparison of three order-book data structures behind one identical, differentially-tested matching engine. Rankings invert between Windows and Linux, mostly as an allocator effect, and the engine runs 1.6&ndash;2.4&times; faster than OCI liquibook with a 3&ndash;5&times; tighter tail.</p>
         </button>
 
       </div>
@@ -460,7 +461,8 @@
             <span class="paper-title">KinyaEmbed: Contrastive Sentence Embeddings for Kinyarwanda via Multi-Stage Curriculum Training</span>
             <span class="status status-preprint">Preprint</span>
           </div>
-          <p class="paper-desc">Contrastive sentence-embedding training for a low-resource language, using a multi-stage curriculum.</p>
+          <div class="venue">arXiv, 2026 &middot; with Yashwanth Devavarapu &amp; Ntakirutimana Pierre</div>
+          <p class="paper-desc">The first dedicated sentence-embedding model for Kinyarwanda, trained with a four-stage contrastive curriculum; surpasses mE5-large by 20.9% and OpenAI text-embedding-3-large by 41.0% on SemRel2024-rw.</p>
         </button>
 
         <button class="paper" data-paper="sdn-ddos">
@@ -519,6 +521,15 @@
     <div class="paper-group">
       <div class="paper-group-label">In Progress</div>
       <div class="paper-grid">
+
+        <button class="paper" data-paper="mri-synthesis">
+          <div class="paper-head">
+            <span class="paper-title">Unpaired MRI Synthesis from Segmentation Maps</span>
+            <span class="status status-progress">In Progress</span>
+          </div>
+          <div class="venue">Harvard University collaboration &middot; Project Lead &middot; targeting an international journal</div>
+          <p class="paper-desc">An unpaired diffusion-based framework for generating brain MRI scans conditioned on segmentation maps, developed with Harvard University and led by me as project lead.</p>
+        </button>
 
         <button class="paper" data-paper="astral">
           <div class="paper-head">
@@ -615,12 +626,18 @@
       <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
     </div>
     <div id="modal-meta" class="modal-meta"></div>
+    <a id="modal-link" class="modal-link" href="#" target="_blank" rel="noopener" hidden></a>
     <div id="modal-abstract" class="modal-abstract"></div>
   </div>
 </div>
 
 <script>
   var papers = {
+    "mri-synthesis": {
+      title: "Unpaired MRI Synthesis from Segmentation Maps",
+      meta: "Harvard University collaboration · Project Lead since Apr 2026 · In Progress · Targeting an international journal",
+      abstract: "An unpaired diffusion model for the conditional generation of brain MRI scans from segmentation maps, developed in collaboration with Harvard University.\n\nThe project sits within a broader line of work on unsupervised deep learning for neuroimaging, focused on image registration and segmentation. It builds PyTorch-based diffusion and geometric-matching frameworks and applies them to MRI, OCT, and LSFM neuroimage data.\n\nAs appointed project lead, I coordinate experiments, technical contributions, and project milestones toward a journal-targeted publication."
+    },
     "decision-analysis": {
       title: "Can Large Language Models Autonomously Perform Decision Analysis?",
       meta: "Stanford University collaboration · In Progress · 2026",
@@ -644,8 +661,15 @@
     "mveb": { title: "MVEB: Massive Video Embedding Benchmark", meta: "arXiv, 2026 · Preprint · with Stanford, CMU & Harvard", abstract: "A 23-task benchmark for video embeddings spanning classification, clustering, retrieval, and video-centric QA — evaluated across 33 models and integrated into the MTEB ecosystem for unified text/image/audio/video evaluation." },
     "cryo-agent": {
       title: "CRYO-AGENT: Agentic Cryo-ET Reconstruction with Physics-Guided Retrieval-Augmented Diffusion",
-      meta: "ECCV 2026 · Submitted",
+      meta: "ECCV Workshop 2026 · Submitted",
       abstract: "Cryo-electron tomography (cryo-ET) is the gold standard for in situ structural biology, providing a unique window into macromolecular complexes within their native cellular environments. However, the technique is fundamentally limited by low signal-to-noise ratio and the \"missing wedge\" artifact, which induces anisotropic distortions and structural hallucinations that current feed-forward denoising methods fail to rigorously validate. CRYO-AGENT redefines 3D reconstruction as an autonomous, iterative scientific discovery loop: we orchestrate a Planner–Executor–Critic workflow where the Executor uses Retrieval-Augmented Cyclic Diffusion (RAD) to inject high-fidelity 3D atomic priors from the Protein Data Bank directly into the reconstruction process. By integrating a Critic agent with a differentiable physics simulator, CRYO-AGENT significantly reduces missing-wedge artifacts and achieves a high Hallucination Rejection Rate compared to state-of-the-art baselines. While the iterative agentic orchestration introduces higher computational latency than linear models, it ensures strict adherence to the underlying physical data — providing a robust pathway for resolving precise conformational states of proteins in noisy tomograms, and showcasing how vision-language reasoning and retrieval-augmented diffusion can solve complex inverse problems in the natural sciences."
+    },
+    "order-book": {
+      title: "A Reproducible, Cross-Platform Study of Order-Book Data Structures in a Low-Latency Matching Engine",
+      meta: "arXiv · Preprint · September 2026 · with Yashwanth Devavarapu",
+      link: "https://github.com/Rakshitha-Ireddi/Lob-matching-engine",
+      linkLabel: "github.com/Rakshitha-Ireddi/Lob-matching-engine",
+      abstract: "The limit order book (LOB) is the core data structure of every electronic exchange, and \"how to build a fast one\" is a well-trodden topic. Yet almost every published comparison reports a single throughput number, on a single machine, for a single workload, and is not reproducible. We present an open, reproducible study. A single price–time-priority matching engine is templated over its book data structure so that the identical matching logic — verified by a differential test to emit byte-identical event streams — runs against three implementations: a dense price array indexed by a two-level occupancy bitset, an std::map, and a price-sorted std::vector. A deterministic synthetic order-flow generator provides the workload; per-command latency is measured with an overhead-corrected timestamp counter and summarised with a high-dynamic-range histogram; the whole suite is re-run in continuous integration with a cache simulator.\n\nThe headline result is a caution about single-machine benchmarks. On a Windows host the bitset book is 10% to 50% faster than std::map; on a Linux/glibc host the ranking inverts and std::map is level or faster. This is mostly an allocator contest — a tree node is allocated and freed per price level: swapping in a pooled node allocator recovers 20% to 100% of the Windows gap (all of it on a wide book), and a cache simulator puts the residual data-cache miss-rate difference at 1.8% vs. 2.2%. Two findings hold on both hosts: the sorted vector's O(L) level insert/erase makes it 1.5× to 6× slower on a deep book with tail latency in the tens of microseconds, and the bitset book's cost — and especially its tail — is flat across book width and order-flow churn where the baselines are not. Against a third-party open-source engine (OCI liquibook), fed the identical stream and verified to produce identical trades, our engine is 1.6× to 2.4× faster with a 3× to 5× tighter tail on the Windows host. All code, data, scripts and CI configuration are public."
     },
     "tabulm": {
       title: "TabuLM: Morphology-Aware Tabular Pre-training for Low-Resource Languages",
@@ -716,6 +740,9 @@
     document.getElementById('modal-title').textContent = p.title;
     document.getElementById('modal-meta').textContent = p.meta;
     document.getElementById('modal-abstract').textContent = p.abstract;
+    var link = document.getElementById('modal-link');
+    if(p.link){ link.href = p.link; link.textContent = p.linkLabel || p.link; link.hidden = false; }
+    else { link.hidden = true; }
     document.getElementById('modal-backdrop').classList.add('open');
   }
   function closeModal(){ document.getElementById('modal-backdrop').classList.remove('open'); }
@@ -727,11 +754,7 @@
     updateToggleUI(t);
   }
   function toggleTheme(){
-    var current = document.documentElement.getAttribute('data-theme');
-    if(!current){
-      var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      current = sysDark ? 'dark' : 'light';
-    }
+    var current = document.documentElement.getAttribute('data-theme') || 'light';
     setTheme(current === 'dark' ? 'light' : 'dark');
   }
   function updateToggleUI(t){
@@ -745,8 +768,8 @@
       document.documentElement.setAttribute('data-theme', stored);
       updateToggleUI(stored);
     } else {
-      var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      updateToggleUI(sysDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', 'light');
+      updateToggleUI('light');
     }
   })();
 </script>
