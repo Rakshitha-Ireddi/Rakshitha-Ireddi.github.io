@@ -409,19 +409,10 @@
         <button class="paper" data-paper="mveb">
           <div class="paper-head">
             <span class="paper-title">MVEB: Massive Video Embedding Benchmark</span>
-            <span class="status status-preprint">Preprint</span>
+            <span class="status status-accepted">Accepted</span>
           </div>
-          <div class="venue">arXiv, 2026 &middot; with Stanford, CMU &amp; Harvard</div>
+          <div class="venue">EMNLP 2026 &middot; with Stanford, CMU &amp; Harvard</div>
           <p class="paper-desc">A 23-task benchmark for video embeddings spanning classification, clustering, retrieval, and video-centric QA — evaluated across 33 models and integrated into the MTEB ecosystem.</p>
-        </button>
-
-        <button class="paper" data-paper="cryo-agent">
-          <div class="paper-head">
-            <span class="paper-title">CRYO-AGENT: Agentic Cryo-ET Reconstruction with Physics-Guided Retrieval-Augmented Diffusion</span>
-            <span class="status status-submitted">Submitted</span>
-          </div>
-          <div class="venue">ECCV Workshop 2026</div>
-          <p class="paper-desc">An agentic, physics-guided diffusion pipeline for cryo-electron tomography reconstruction, combining agentic reasoning with generative modeling for scientific imaging.</p>
         </button>
 
       </div>
@@ -531,14 +522,6 @@
           <p class="paper-desc">An unpaired diffusion-based framework for generating brain MRI scans conditioned on segmentation maps, developed with Harvard University and led by me as project lead.</p>
         </button>
 
-        <button class="paper" data-paper="astral">
-          <div class="paper-head">
-            <span class="paper-title">Astral: Training-Free Multi-Domain Video Anomaly Detection via Agentic SOP Compilation and Symbolic World Models</span>
-            <span class="status status-progress">In Progress</span>
-          </div>
-          <p class="paper-desc">A training-free, three-agent system that detects video anomalies by reasoning about procedural rather than statistical normality, evaluated across liquid-dispensing, industrial, and robotic-manipulation domains.</p>
-        </button>
-
         <button class="paper" data-paper="scene-representations">
           <div class="paper-head">
             <span class="paper-title">Scene Representations for Robotics: From Metric Maps to 4D Semantic Gaussian Splatting</span>
@@ -623,7 +606,7 @@
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-head">
       <div id="modal-title" class="modal-title"></div>
-      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
     </div>
     <div id="modal-meta" class="modal-meta"></div>
     <a id="modal-link" class="modal-link" href="#" target="_blank" rel="noopener" hidden></a>
@@ -658,12 +641,7 @@
       meta: "Accepted at CVPR Workshop 2026",
       abstract: "When a clock reads 2:50 in a mirror, humans instantly infer the true time is 9:10 — yet we show that current Vision-Language Models (VLMs) overwhelmingly report \"2:50,\" hallucinating the canonical orientation rather than reasoning about the reflection. We term this systematic failure reflection blindness and introduce our benchmark, the first designed to diagnose it. It comprises 713 real-world images and 3,529 question-answer pairs spanning 10 scenario categories (license plates in rear-view mirrors, analog clocks, hands, ears, shoes, chemical formulas, ambulance mirror-text, selfie cameras, water reflections, and indoor mirrors), organized into five question types: recognition, correction, spatial, reasoning, and comparison. Evaluating 11 VLMs in both single-turn and multi-turn settings, we find that all models achieve only 39–48% accuracy (single-turn) versus 94% for humans, with frontier systems clustered at 42–44% and performance collapsing most severely on tasks requiring mental un-flipping of text and left–right chirality judgment. Multi-turn dialogue does not improve performance; most models degrade by 1–14 percentage points when questions are posed sequentially."
     },
-    "mveb": { title: "MVEB: Massive Video Embedding Benchmark", meta: "arXiv, 2026 · Preprint · with Stanford, CMU & Harvard", abstract: "A 23-task benchmark for video embeddings spanning classification, clustering, retrieval, and video-centric QA — evaluated across 33 models and integrated into the MTEB ecosystem for unified text/image/audio/video evaluation." },
-    "cryo-agent": {
-      title: "CRYO-AGENT: Agentic Cryo-ET Reconstruction with Physics-Guided Retrieval-Augmented Diffusion",
-      meta: "ECCV Workshop 2026 · Submitted",
-      abstract: "Cryo-electron tomography (cryo-ET) is the gold standard for in situ structural biology, providing a unique window into macromolecular complexes within their native cellular environments. However, the technique is fundamentally limited by low signal-to-noise ratio and the \"missing wedge\" artifact, which induces anisotropic distortions and structural hallucinations that current feed-forward denoising methods fail to rigorously validate. CRYO-AGENT redefines 3D reconstruction as an autonomous, iterative scientific discovery loop: we orchestrate a Planner–Executor–Critic workflow where the Executor uses Retrieval-Augmented Cyclic Diffusion (RAD) to inject high-fidelity 3D atomic priors from the Protein Data Bank directly into the reconstruction process. By integrating a Critic agent with a differentiable physics simulator, CRYO-AGENT significantly reduces missing-wedge artifacts and achieves a high Hallucination Rejection Rate compared to state-of-the-art baselines. While the iterative agentic orchestration introduces higher computational latency than linear models, it ensures strict adherence to the underlying physical data — providing a robust pathway for resolving precise conformational states of proteins in noisy tomograms, and showcasing how vision-language reasoning and retrieval-augmented diffusion can solve complex inverse problems in the natural sciences."
-    },
+    "mveb": { title: "MVEB: Massive Video Embedding Benchmark", meta: "Accepted at EMNLP 2026 · with Stanford, CMU & Harvard", abstract: "A 23-task benchmark for video embeddings spanning classification, clustering, retrieval, and video-centric QA — evaluated across 33 models and integrated into the MTEB ecosystem for unified text/image/audio/video evaluation." },
     "order-book": {
       title: "A Reproducible, Cross-Platform Study of Order-Book Data Structures in a Low-Latency Matching Engine",
       meta: "arXiv · Preprint · September 2026 · with Yashwanth Devavarapu",
@@ -706,11 +684,6 @@
       title: "Unleashing Machine Wisdom: A Glimpse Into AI-Powered Tsunami Early Warning Systems",
       meta: "Book Chapter · IGI Global Scientific Publishing, 2024 · in \"Utilizing AI and Machine Learning for Natural Disaster Management\" · with U. Nithin, L. Namratha, M.A.K. Shaik, S. Ibrahim",
       abstract: "This chapter scrutinizes the potential of AI-driven tsunami early warning systems (TEWS), focused on the catastrophic potential of tsunamis. It charts a roadmap spotlighting artificial neural networks (ANN) and convolutional neural networks (CNN), guiding stakeholders from theoretical frameworks toward actionable strategies. Beyond technical intricacies, it emphasizes the transformative impact of proactive disaster management, envisioning machine learning as a vigilant guardian for coastal safety, and calls for a paradigm shift where human intuition and AI together enhance our capacity to anticipate, respond to, and mitigate the devastating impact of tsunamis."
-    },
-    "astral": {
-      title: "Astral: Training-Free Multi-Domain Video Anomaly Detection via Agentic SOP Compilation and Symbolic World Models",
-      meta: "In Progress",
-      abstract: "Most video anomaly detection (VAD) systems learn statistical notions of normality from large labeled datasets, making them brittle when transferred across domains. Astral (Agentic Symbolic Temporal Reasoning and Anomaly Localization) is a training-free, three-agent system that detects anomalies by reasoning about procedural rather than statistical normality. Given only a plain-language Standard Operating Procedure (SOP) and a video clip, Astral compiles a Canonical Normal World Model — a symbolic representation encoding expected entities, states, temporal protocol steps, and Linear Temporal Logic safety rules — then detects deviations from it without any dataset-specific training. Agent 1 (SOP Compiler) parses the SOP using a 3B-parameter vision-language model; Agent 2 (Deterministic Perceptual Engine) builds a per-frame scene graph via zero-shot detection and tracking, evaluating divergences against the world model through a graph-neural-network analyzer; Agent 3 (Triggered Reasoner) performs causal verification only on flagged clips. Evaluated across liquid-dispensing, industrial-factory, and robotic-manipulation domains, Astral achieves 100.0% accuracy on LiquidAD, 90.9% (F1=0.945) on IPAD, and 60.0% (F1=0.600) on a PhysAD sample, with zero false positives on normal videos across all three datasets."
     },
     "scene-representations": {
       title: "Scene Representations for Robotics: From Metric Maps to 4D Semantic Gaussian Splatting",
